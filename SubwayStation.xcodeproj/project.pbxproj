@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3820529C2897F868006FDC3F /* StationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3820529B2897F868006FDC3F /* StationDetailViewController.swift */; };
+		3820529E2897FB36006FDC3F /* StationDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3820529D2897FB36006FDC3F /* StationDetailCollectionViewCell.swift */; };
+		382052A028980581006FDC3F /* StationResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3820529F28980581006FDC3F /* StationResponseModel.swift */; };
+		38C6393B2899503D009D37FD /* StationArrivalDataResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C6393A2899503D009D37FD /* StationArrivalDataResponseModel.swift */; };
 		38D50D6728940FDE004996BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D50D6628940FDE004996BE /* AppDelegate.swift */; };
 		38D50D6928940FDE004996BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D50D6828940FDE004996BE /* SceneDelegate.swift */; };
 		38D50D6B28940FDE004996BE /* StationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D50D6A28940FDE004996BE /* StationSearchViewController.swift */; };
@@ -17,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3820529B2897F868006FDC3F /* StationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailViewController.swift; sourceTree = "<group>"; };
+		3820529D2897FB36006FDC3F /* StationDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		3820529F28980581006FDC3F /* StationResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationResponseModel.swift; sourceTree = "<group>"; };
+		38C6393A2899503D009D37FD /* StationArrivalDataResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationArrivalDataResponseModel.swift; sourceTree = "<group>"; };
 		38D50D6328940FDE004996BE /* SubwayStation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubwayStation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D50D6628940FDE004996BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38D50D6828940FDE004996BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +47,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3820529A2897F843006FDC3F /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				38D50D6A28940FDE004996BE /* StationSearchViewController.swift */,
+				3820529B2897F868006FDC3F /* StationDetailViewController.swift */,
+				3820529D2897FB36006FDC3F /* StationDetailCollectionViewCell.swift */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
 		38D50D5A28940FDE004996BE = {
 			isa = PBXGroup;
 			children = (
@@ -60,7 +78,9 @@
 			children = (
 				38D50D6628940FDE004996BE /* AppDelegate.swift */,
 				38D50D6828940FDE004996BE /* SceneDelegate.swift */,
-				38D50D6A28940FDE004996BE /* StationSearchViewController.swift */,
+				3820529A2897F843006FDC3F /* Scenes */,
+				3820529F28980581006FDC3F /* StationResponseModel.swift */,
+				38C6393A2899503D009D37FD /* StationArrivalDataResponseModel.swift */,
 				38D50D6F28940FE1004996BE /* Assets.xcassets */,
 				38D50D7128940FE1004996BE /* LaunchScreen.storyboard */,
 				38D50D7428940FE1004996BE /* Info.plist */,
@@ -146,8 +166,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3820529C2897F868006FDC3F /* StationDetailViewController.swift in Sources */,
+				382052A028980581006FDC3F /* StationResponseModel.swift in Sources */,
 				38D50D6B28940FDE004996BE /* StationSearchViewController.swift in Sources */,
+				38C6393B2899503D009D37FD /* StationArrivalDataResponseModel.swift in Sources */,
 				38D50D6728940FDE004996BE /* AppDelegate.swift in Sources */,
+				3820529E2897FB36006FDC3F /* StationDetailCollectionViewCell.swift in Sources */,
 				38D50D6928940FDE004996BE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
