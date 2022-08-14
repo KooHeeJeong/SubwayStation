@@ -24,7 +24,7 @@ final class StationDetailCollectionViewCell: UICollectionViewCell {
     }()
     
     
-    func setup() {
+    func setup(with realTimeArrival: RealTimeArrival) {
         //Cell의 전반적인 설정
         layer.cornerRadius = 12.0
         layer.shadowColor = UIColor.black.cgColor
@@ -46,7 +46,7 @@ final class StationDetailCollectionViewCell: UICollectionViewCell {
             $0.bottom.equalToSuperview().inset(16.0)
         }
         
-        lineLabel.text = "초지역 방면"
-        remainLabel.text = "중앙 도착"
+        lineLabel.text = realTimeArrival.line
+        remainLabel.text = realTimeArrival.remainTime
     }
 }

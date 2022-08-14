@@ -10,6 +10,8 @@ import SnapKit
 import UIKit
 
 final class StationDetailViewController: UIViewController {
+    private let station: Station
+    private var realtimeArrivalList: [RealTimeArrival] = []
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(fetchData), for: .valueChanged)
@@ -17,21 +19,7 @@ final class StationDetailViewController: UIViewController {
         return refreshControl
     }()
     
-    @objc func fetchData() {
-        refreshControl.endRefreshing()
-        print("REFRESH ! ")
-        
-        let urlString = "http://swopenapi.seoul.go.kr/api/subway/sample/json/realtimeStationArrival/0/5/왕십리"
-        AF
-            .request(urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
-            .responseDecodable(of: StationArrivalDataResponseModel.self) { response in
-                guard case .success(let data) = response.result else { return }
-                
-                print(data.realTimeStation)
-                
-            }
-            .resume()
-    }
+
     
     
     private lazy var collectionView: UICollectionView = {
@@ -53,10 +41,20 @@ final class StationDetailViewController: UIViewController {
         
         return collectionView
     }()
+    
+    init(station: Station) {
+        self.station = station
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "왕십리"
+        navigationItem.title = station.stationName
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints{
@@ -65,10 +63,28 @@ final class StationDetailViewController: UIViewController {
         
         fetchData()
     }
+    
+    @objc private func fetchData() {
+        
+        let stationName = station.stationName
+        let urlString = "http://swopenapi.seoul.go.kr/api/subway/sample/json/realtimeStationArrival/0/5/\(stationName.replacingOccurrences(of: "역", with: ""))"
+        
+        AF
+            .request(urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")
+            .responseDecodable(of: StationArrivalDataResponseModel.self) { [weak self]response in
+                self?.refreshControl.endRefreshing()
+                guard case .success(let data) = response.result else { return }
+                
+                self?.realtimeArrivalList = data.realtimeArrivalList
+                self?.collectionView.reloadData()
+                
+            }
+            .resume()
+    }
 }
 extension StationDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return realtimeArrivalList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -76,7 +92,8 @@ extension StationDetailViewController: UICollectionViewDataSource {
             withReuseIdentifier: "StationDetailCollectionViewCell",
             for: indexPath) as? StationDetailCollectionViewCell
         
-        cell?.setup()
+        let realTimeArrival = realtimeArrivalList[indexPath.row]
+        cell?.setup(with: realTimeArrival)
         
         return cell ?? UICollectionViewCell()
     }
